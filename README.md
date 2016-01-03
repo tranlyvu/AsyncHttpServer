@@ -2,8 +2,8 @@
 The repo contains answers for the exercises of some online courses that I have taken
 
 #List of completed courses:
-*  Machine Learning by Andrew Ng @https://www.coursera.org/learn/machine-learning
-*  Unsupervised Feature Learning and Deep Learning @http://deeplearning.stanford.edu/tutorial/
+*  [Machine Learning by Andrew Ng](https://www.coursera.org/learn/machine-learning)
+*  [Unsupervised Feature Learning and Deep Learning](http://deeplearning.stanford.edu/tutorial/)
 
 #Contribution
 Contributions are welcome! For bug reports or requests please submit an [issue](https://github.com/tranlyvu/courses/issues).
