@@ -2,7 +2,7 @@
 
 Overview
 ---
-The repo contains answers for the exercises of several MOOC courses
+The repo contains answers for the exercises of several MOOC courses in Deep Learning
 
 List of courses
 ---
