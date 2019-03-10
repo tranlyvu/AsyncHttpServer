@@ -1,41 +1,18 @@
-# **async-http**
+# **AsyncHttpServer**
 
 Overview
 ---
-A python HTTP web server
+Yet another lightweight and asynchronous HTTP web server written in python 3
 
 <img src="img/server.png" width="480" alt="Combined Image" />
 
-
+---
 Contribution
 ---
-For bug reports or requests please submit an [issue](https://github.com/tranlyvu/async-http.git/issues).
 
-For new feature contribution, please follow the following instruction:
+Please follow [contribution instruction](https://github.com/tranlyvu/AsyncHttpServer/blob/dev/CONTRIBUTING.md) and [code of conduct](https://github.com/tranlyvu/AsyncHttpServer/blob/dev/CODE-OF-CONDUCT.md)
 
-1. Fork the repo https://github.com/tranlyvu/async-http.git to your own github
-
-2. Clone from your own repo
-
-`$ git clone https://github.com/<your name>/async-http.git`
-
-3. Make sure you are at dev branch 
-
-`$ git checkout dev && git pull`
-
-4. Create your feature/bug-fix branch
-
-`$ git checkout -b <feature/bug>/<branch-name>`
-
-5. Commit your changes 
-
-`$ git commit -am 'Add some new feature'`
-
-6. Push to the branch 
-
-`$ git push`
-
-7. Go to your own repo and create a new Pull Request against 'dev' branch
+### [List of contributors](https://github.com/tranlyvu/wiki-link/blob/dev/CONTRIBUTORS.md)
 
 
 Contact
