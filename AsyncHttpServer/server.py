@@ -1,7 +1,10 @@
 import socket
-import StringIO
 import sys
 
+try:
+	from StringIO import StringIO
+except ImportError:
+	from io import StringIO
 
 class WSGIServer(object):
 
@@ -16,19 +19,19 @@ class WSGIServer(object):
 			self.socket_type
 		)
 
-	# allow to reuse the same address
-	listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-	# Bind	
-	listen_socket.bind(server_address)
-	#activate
-	listen_socket.listen(self.request_queue_size)
-	# Get server host name and port
-	host, port = self.listen_socket.getsockname()[:2]
-	self.server_name = socket.getfqdn(host)
-	self.server_port = port	
+		# allow to reuse the same address
+		listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+		# Bind	
+		listen_socket.bind(server_address)
+		#activate
+		listen_socket.listen(self.request_queue_size)
+		# Get server host name and port
+		host, port = self.listen_socket.getsockname()[:2]
+		self.server_name = socket.getfqdn(host)
+		self.server_port = port	
 
-	# Return headers set by Web framework/Web application
-	self.headers_set = []
+		# Return headers set by Web framework/Web application
+		self.headers_set = []
 
 	def set_app(self, application):
 		self.application = application
@@ -36,12 +39,12 @@ class WSGIServer(object):
 	def serve_forever(self):
 		listen_socket = self.listen_socket
 
-	while True:
-		# New client connection
-		client_connection, client_address = listen_socket.accept()
-		# Handle one request and close the client connection. Then
-		# loop over to wait for another client connection
-		self.handle_one_request()
+		while True:
+			# New client connection
+			self.client_connection, client_address = listen_socket.accept()
+			# Handle one request and close the client connection. Then
+			# loop over to wait for another client connection
+			self.handle_one_request()
 
 	def handle_one_request(self):
 		self.request_data = request_data = self.client_connection.recv(1024)
@@ -65,8 +68,8 @@ class WSGIServer(object):
 
 	def parse_request(self, text):
 		request_line = text.splitlines()[0]
-		request_line = request_line.rstrip('\r\n')
-		        # Break down the request line into components
+		request_line = request_line.decode('utf8').rstrip('\r\n')
+		# Break down the request line into components
 		(self.request_method,   # get
 		 self.path,  			# /hello
 		 self.request_version   # http/1.1
@@ -76,7 +79,7 @@ class WSGIServer(object):
 		env = {}
 		env["wsgi.version"] 	= (1, 0)
 		env["wsgi.url_scheme"] 	= "http"
-		env["wsgi.input"] 		= StringIO.StringIO(self.request_data)
+		env["wsgi.input"] 		= StringIO(self.request_data.decode('utf8'))
 		env['wsgi.errors']      = sys.stderr
 		env['wsgi.multithread']  = False
 		env['wsgi.multiprocess'] = False
@@ -103,14 +106,14 @@ class WSGIServer(object):
 				response += "{0}: {1}\r\n".format(*header)
 			response += "\r\n"
 			for data in result:
-				response += data
+				response += data.decode('utf8')
 
 			 # Print formatted response data a la 'curl -v'
 			print(''.join(
                 '> {line}\n'.format(line=line)
                 for line in response.splitlines()
             ))
-            self.client_connection.sendall(response)
+			self.client_connection.sendall(response.encode())
 		finally:
 			self.client_connection.close()
 
@@ -131,4 +134,4 @@ if __name__ == '__main__':
 	application = getattr(module, application)
 	https = make_server(SERVER_ADDRESS, application)
 	print('WSGIServer: Serving HTTP on port {port} ...\n'.format(port=PORT))
-	httpd.serve_forever()
+	https.serve_forever()
