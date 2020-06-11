@@ -21,8 +21,19 @@
                             <ul class="list-inline item-details">
                                 {% if post.client %}
                                     <li>Client:
-                                        <strong><a href="http://startbootstrap.com">{{ post.client }}</a>
-                                        </strong>
+                                        <strong><a href="http://startbootstrap.com">{{ post.client }}</a></strong>
+                                    </li>
+                                {% elsif post.project1 %}
+                                    <li>Project Name:
+                                        <strong><a href="https://www.figma.com/proto/6lCcfvMzovyPhy5PG7W4i4/MusicUp?node-id=22%3A0&viewport=330%2C239%2C0.09518363326787949&scaling=scale-down">{{ post.project1 }}</a></strong>
+                                    </li> 
+                                {% elsif post.project2 %}
+                                    <li>Project Name:
+                                        <strong><a href="https://www.figma.com/proto/GmcHq2vLrViDG2BnctdGUF/KodeProtect?node-id=283%3A0&viewport=423%2C387%2C0.1752866804599762&scaling=scale-down">{{ post.project2 }}</a></strong>
+                                    </li>
+                                {% elsif post.project3 %}
+                                    <li>Project Name:
+                                        <strong><a href="https://www.grailconcept.com/">{{ post.project3 }}</a></strong>
                                     </li>
                                 {% endif %}
                                 {% if post.project-date %}
